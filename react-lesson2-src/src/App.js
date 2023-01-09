@@ -12,10 +12,7 @@ export default function () {
 		setProducts([...products.filter((pr) => pr.id !== id)])
 	}
 
-	const total = () => {
-		const total = products.reduce((sum, current) => sum + current.price * current.cnt, 0)
-		return total
-	}
+	const total = products.reduce((sum, current) => sum + current.price * current.cnt, 0)
 
 	return (
 		<div className="some">
@@ -44,7 +41,7 @@ export default function () {
 					))}
 				</tbody>
 			</table>
-			<p>Total: {total()}</p>
+			<p>Total: {total}</p>
 		</div>
 	)
 }
