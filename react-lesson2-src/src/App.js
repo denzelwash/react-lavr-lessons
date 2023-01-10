@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import MinMax from './MinMax'
+import Field from './Field'
 
 export default function () {
 	let [products, setProducts] = useState(productsStub())
@@ -17,6 +18,7 @@ export default function () {
 	return (
 		<div className="some">
 			<h1>Products list</h1>
+			<Field></Field>
 			<table>
 				<tbody>
 					<tr>
