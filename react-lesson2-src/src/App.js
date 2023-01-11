@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import MinMax from './MinMax'
 import Field from './Field'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from	'react-bootstrap'
 
 export default function () {
 	let [products, setProducts] = useState(productsStub())
+	let [card, toggleCard] = useState(false)
 
 	let setCnt = (id, cnt) => {
 		setProducts(products.map((pr) => (pr.id != id ? pr : { ...pr, cnt })))
@@ -13,12 +16,17 @@ export default function () {
 		setProducts([...products.filter((pr) => pr.id !== id)])
 	}
 
+	const toggle = () => {
+		toggleCard(!card)
+	}
+
 	const total = products.reduce((sum, current) => sum + current.price * current.cnt, 0)
 
 	return (
-		<div className="some">
+		<div className="container">
 			<h1>Products list</h1>
-			<Field></Field>
+			<Button onClick={toggle}>Open</Button>
+			{card ? <Field onChange={() => toggle()}/> : null}
 			<table>
 				<tbody>
 					<tr>

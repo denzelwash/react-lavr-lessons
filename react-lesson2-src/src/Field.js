@@ -1,16 +1,26 @@
 import React, {useRef, useEffect } from "react"
-import useClickOutside from "./hooks/useClickOutside";
+import useClickInside from "./hooks/useClickInside";
+import {Button, Card} from 'react-bootstrap'
 
-export default function () {
+export default function ({onChange}) {
   const elem = useRef()
-  const outside = useClickOutside(elem)
+  const inside = useClickInside(elem)
 
   useEffect(() => {
-		console.log(outside);
-	}, [outside])
+		if (inside === false) {
+      onChange()
+    }
+	}, [inside])
 
-  return <div ref={elem}>
-    <p>Приветик!</p>
-  </div>
-  
+  return <Card style={{ width: '18rem' }} ref={elem}>
+    <Card.Img variant="top" src="" />
+    <Card.Body>
+      <Card.Title>Card Title</Card.Title>
+      <Card.Text>
+        Some quick example text to build on the card title and make up the
+        bulk of the card's content.
+      </Card.Text>
+      <Button variant="primary">Go somewhere</Button>
+    </Card.Body>
+  </Card>
 }
