@@ -26,7 +26,7 @@ export default function () {
 		<div className="container">
 			<h1>Products list</h1>
 			<Button onClick={toggle}>Open</Button>
-			{card ? <Field onChange={() => toggle()}/> : null}
+			{card ? <Field onChange={toggle}/> : null}
 			<table>
 				<tbody>
 					<tr>
