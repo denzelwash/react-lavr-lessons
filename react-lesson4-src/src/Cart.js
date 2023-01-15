@@ -37,6 +37,6 @@ export default function({ onNext, products, onChange, onRemove }){
 		<hr/>
 		<strong>Total: { total }</strong>
 		<hr/>
-		<button type="button" className="btn btn-primary" onClick={onNext}>Move to order</button>
+		<button type="button" className="btn btn-primary" onClick={onNext}>Move to form</button>
 	</div>;
 }

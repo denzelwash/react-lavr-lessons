@@ -19,6 +19,8 @@ export default function(){
 	/* products */
 	let [ products, setProducts ] = useState(productsStub());
 
+	const [formFields, setFormFields] = useState(getFormFields())
+
 	let setProductCnt = (id, cnt) => {
 		setProducts(products.map(pr => pr.id != id ? pr : ({ ...pr, cnt })));
 	}
@@ -37,8 +39,18 @@ export default function(){
 					onRemove={removeProduct}
 				/> 
 			}
-			{ page === 'order' && <Order onNext={moveToResult} onPrev={moveToCart}  /> }
-			{ page === 'result' && <Result products={products} /> }
+			{ page === 'order' && 
+				<Order 
+					onNext={moveToResult} 
+					onPrev={moveToCart} 
+					formFields={formFields}
+					setFormFields={setFormFields}
+				/> }
+			{ page === 'result' && 
+				<Result 
+					products={products}
+					formFields={formFields} 
+			/> }
 			<hr/>
 			<footer>
 				<button type="button" onClick={() => setSettings({ ...settings, lang: 'ru' })}>ru</button>
@@ -79,4 +91,39 @@ function productsStub(){
 			cnt: 1
 		}
 	];
+}
+
+const getFormFields = () => {
+	return [
+		{
+			name: 'Name',
+			value: '',
+			type: 'text',
+			required: true,
+			error: false,
+			errorText: 'Please choose a username',
+			placeholder: 'Name',
+			pattern: false,
+		},
+		{
+			name: 'Phone',
+			value: '',
+			type: 'tel',
+			required: true,
+			error: false,
+			errorText: 'Please choose a phone',
+			placeholder: '8888888888',
+			pattern: /^\D*(\d\D*){9,14}$/,
+		},
+		{
+			name: 'Email',
+			value: '',
+			type: 'email',
+			required: true,
+			error: false,
+			errorText: 'Please choose a email',
+			placeholder: 'Email',
+			pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+		},
+	]
 }
